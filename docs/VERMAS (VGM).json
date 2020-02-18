@@ -1,0 +1,41 @@
+{
+    "schema": {
+        "model": "VERMAS (VGM)",
+        "type": "object",
+        "properties": {
+            "vermas": {
+                "$ref": "#/definitions/VERMAS"
+            }
+        },
+        "definitions": {
+            "VERMAS": {
+                "type": "object",
+                "properties": {
+                    "messageId": {
+                        "description": "missing description",
+                        "$ref": "#/definitions/Numeric"
+                    }
+                }
+            }
+        }
+    },
+    "layout": [
+        {
+            "widget": "message",
+            "message": "<h1>vermas</h1>"
+        },
+        {
+            "widget": "message",
+            "message": "<h1>vermas</h1>"
+        },
+        {
+            "key": "messageId",
+            "type": "section",
+            "items": [
+                {
+                    "key": "Numeric"
+                }
+            ]
+        }
+    ]
+}

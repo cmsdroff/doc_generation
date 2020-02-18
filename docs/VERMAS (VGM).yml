@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  description: ''
+  title: VERMAS (VGM)
+  version: ''
+servers: []
+paths:
+  /VERMAS: {}
+components:
+  schemas:
+    VERMAS:
+      type: object
+      properties:
+        messageId:
+          description: missing description
+          $ref: '#/components/schemas/Numeric'
+    Numeric:
+      type: object
+      properties: {}
