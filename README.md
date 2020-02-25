@@ -5,9 +5,9 @@ This project is for generating document schemas from a common class data model i
 The benefits of this model-driven approach is: 
 
 * **Consistency** of structure and naming across document schemas. The same attribute or relationship is called the same, positioned under the same class and has the same type between all generated schemas (unless deviations are explicitly defined).
-* **Efficiency** of generating new schemas, litterally by dragging in the classes needed for a particular new schema's requirements.
+* **Efficiency** of generating new schemas, literally by dragging in the classes needed for a particular new schema's requirements.
 * **Managability** of updates and changes, if a change is made on one schema, it is automatically reflected in all other schemas based on the same data elements (subject of course to human approval, exporting the updated schema). 
-* **Semantic** alignment to [CEFACT](https://service.unece.org/trade/uncefact/publication/Transport and Logistics/MMT RDM/HTML/041.htm). 
+* **Semantic** alignment to [UN/CEFACT](https://service.unece.org/trade/uncefact/publication/Transport and Logistics/MMT RDM/HTML/041.htm). 
 
 ## Getting Started
 You need a few tools to get started: 
@@ -18,10 +18,10 @@ Second, install the OpenAPI extension. In StarUML, go to Tools -> Extension Mana
 
 Now, from Tools -> OpenAPI -> Generate Specs you can export various API and web formats based on a UML model in accordance to the edi3 [spec](https://edi3.org/specs/edi3-uml-profile/develop/).
 
-Please note that the OpenAPI extension is still under delvelopment and updates occurs. Please keep involved and submit relevant feedback on [https://github.com/gs-gs/staruml-cefact/issues](https://github.com/gs-gs/staruml-cefact/issues).
+Please note that the OpenAPI extension is still under delvelopment and updates occur. Please keep involved and submit relevant feedback on [https://github.com/gs-gs/staruml-cefact/issues](https://github.com/gs-gs/staruml-cefact/issues).
 
 ## Model Structure
-The `tl-docgen-model.mdj` file defines both the common class model and the individual "profiles" for each document schema. You will find the model structured accordingly around a common "Model" package and a range of schema-specific packages (Bill Of Lading, Shipping Instructions, etc). All classes, enums, attributes, etc must be defined within the common Model. The schema packages only define thw following: 
+The `tl-docgen-model.mdj` file defines both the common class model and the individual "profiles" for each document schema. You will find the model structured accordingly around a common "Model" package and a range of schema-specific packages (Bill Of Lading, Shipping Instructions, etc). All classes, enums, attributes, etc must be defined within the common Model. The schema packages only define the following: 
 
 - A _Class_ representing the document schema.  
 - An _interface_ which tells the OpenAPI extension which class to export. It must have an Interface Realization relationship to its corresponding schema class. 
