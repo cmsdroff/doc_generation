@@ -4,16 +4,195 @@ info:
   title: VERMAS (VGM)
   version: ''
 servers: []
-paths:
-  /VERMAS: {}
+paths: {}
 components:
   schemas:
+    Reference:
+      type: object
+      properties:
+        type:
+          description: 'Type of reference. '
+          type: string
+          enum:
+            - proformaInvoiceNumber
+            - deliveryScheduleNumber
+            - consigneeShipmentReferenceNumber
+            - despatchNoteNumber
+            - customsTariffNumber
+            - customsDecisionRequestNumber
+            - subHouseBillOfLadingNumber
+            - customsGuaranteeNumber
+            - sellersCatalogueNumber
+            - declarantsCustomsIdentityNumber
+            - importerReferenceNumber
+            - customsDeclarationNumber
+            - stockKeepingUnitNumber
+            - adviceOfCollectionNumber
+            - railwayWagonNumber
+            - buyersItemNumber
+            - customsHouseBrokerReferenceNumber
+            - reportNumber
+            - traderAccountNumber
+            - governmentAgencyReferenceNumber
+            - regristrationNumberOfPreviousCustomsDeclaration
+            - productReservationNumber
+            - customsItemNumber
+            - tariffNumber
+            - replenishmentPurchaceOrderNumber
+            - contractPartyReferenceNumber
+            - agentsReferenceNumber
+            - deliveryVerificationCertificate
+            - customsReleaseCode
+            - complianceCodeNumber
+            - ministerialCertificateOfHomologation
+            - banksCommonTransactionReferenceNumber
+            - customsTranshipmentNumber
+            - vehicleIdentificationNumber
+            - replenishmentPurchaseOrderRangeStartNumber
+            - consigneesInvoiceNumber
+            - replenishmentPurchaseOrderRangeEndNumber
+            - buyersCatalogueNumber
+            - inlandTransportOrderNumber
+            - consigneesReference
+            - usCustomsServiceEntryCode
+            - transportEquipmentReleaseOrderReference
+            - importersLetterOfCreditReference
+            - customsBindingRulingNumber
+            - customsNonBindingRulingNumber
+            - uniqueGoodsShipmentIdentifier
+            - rateCodeNumber
+            - airWaybillNumber
+            - buyersContractNumber
+            - houseBillOfLadingNumber
+            - billOfLadingNumber
+            - bookingReferenceNumber
+            - consigneesOrderNumber
+            - carriersReferenceNumber
+            - contractNumber
+            - buyersDebtorNumber
+            - exportDeclaration
+            - exportPermitNumber
+            - containerEquipmentReceiptNumber
+            - exportersReferenceNumber
+            - exportLicenceNumber
+            - freightForwardersReferenceNumber
+            - governmentReferenceNumber
+            - harmonizedSystemNumber
+            - houseWaybillNumber
+            - inBondNumber
+            - iataCargoAgentCodeNumber
+            - importLicenceNumber
+            - invoiceNumber
+            - letterOfCreditNumber
+            - shipNoticeManifestNumber
+            - masterBillOfLadingNumber
+            - manufacturersPartNumber
+            - manufacturersOrderNumber
+            - masterAirWaybillNumber
+            - northAmericanHazardousGoodsClassificationNumber
+            - purchaseOrderNumber
+            - generalReferenceNumber
+            - pickupReferenceNumber
+            - plantNumber
+            - packingListNumber
+            - purchaseOrderResponseNumber
+            - purchaseOrderChangeNumber
+            - paymentReference
+            - priceQuoteNumber
+            - shippersIdentifyingNumberForShipment
+            - sealNumber
+            - shipmentReferenceNumber
+            - sellersReferenceNumber
+            - truckersBillOfLading
+            - transactionReferenceNumber
+            - orderNumber
+            - warehouseEntryNumber
+            - warehouseReceiptNumber
+            - warehouseStorageLocationNumber
+            - cargoControlNumber
+            - previousCargoControlNumber
+            - mutuallyDefinedReferenceNumber
+            - cocoaBatchReferenceNumber
+        value:
+          description: 'Reference value. '
+          $ref: '#/components/schemas/Text'
+    TransportEquipment:
+      type: object
+      properties:
+        equipmentNumber:
+          description: >-
+            Unique identifier for this piece of transport equipment, printed
+            physically on the equipment.
+          $ref: '#/components/schemas/Identifier'
+        equipmentType:
+          description: ISO 6346 size and type code (for example "45G1")
+          $ref: '#/components/schemas/Text'
+        printedEquipmentType:
+          description: >-
+            The container size and type, as printed on the transport document
+            (for example "40 DRY 9''6").
+          $ref: '#/components/schemas/Text'
+        code:
+          items:
+            description: >-
+              The harmonized system code specifying a type of loaded consignment
+              item(s).
+            $ref: '#/components/schemas/Text'
+          type: array
+        usedCapacity:
+          description: >-
+            The code specifying the used capacity of this piece of transport
+            equipment, such as full or empty.
+          type: string
+          enum:
+            - full
+            - empty
+        movementType:
+          description: Code specifying a type of movement.
+          type: string
+          enum:
+            - fcl
+            - lcl
+        haulageArrangements:
+          description: Specification of the type of equipment haulage arrangements.
+          $ref: '#/components/schemas/Text'
+        equipmentSupplierIndicator:
+          description: >-
+            This element indicates the party that is the supplier of the
+            equipment.
+          type: string
+          enum:
+            - carrierSupplied
+            - shipperSupplied
+      required:
+        - equipmentNumber
     VERMAS:
       type: object
       properties:
         messageId:
           description: missing description
           $ref: '#/components/schemas/Numeric'
+        utilizedTransportEquipment:
+          $ref: '#/components/schemas/TransportEquipment'
+        references:
+          items:
+            $ref: '#/components/schemas/Reference'
+          type: array
+          minItems: 1
+      allOf:
+        - $ref: '#/components/schemas/TransportEquipment'
+        - type: object
+      required:
+        - utilizedTransportEquipment
+        - references
+        - Reference
+        - TransportEquipment
+    Text:
+      type: object
+      properties: {}
+    Identifier:
+      type: object
+      properties: {}
     Numeric:
       type: object
       properties: {}
